@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"github.com/benotsman-youssuf/grawl/internal/fetcher"
+	"github.com/benotsman-youssuf/grawl/internal/parser"
 )
 
 func main() {
@@ -20,5 +21,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Printf("Status: %d | Size: %d bytes\n", result.StatusCode, result.ByteCount)
+	for _, link := range parser.ParseUrl(result.ByteCount) {
+		fmt.Println(link)
+	}
 }
